@@ -1,6 +1,6 @@
 <script lang="ts">
   import Button from "./button/button.svelte";
-  import { Enter } from "radix-icons-svelte";
+  import { Enter, GithubLogo } from "radix-icons-svelte";
   import ThemeToggle from "./theme-toggle.svelte";
 </script>
 
@@ -15,6 +15,18 @@
       class="hidden rounded-sm bg-transparent px-3 py-1 align-middle text-sm font-semibold outline-none hover:underline focus-visible:bg-accent focus-visible:ring-1 focus-visible:ring-ring sm:block"
       >Anime Corner Rankings</a
     >
-    <ThemeToggle />
+    <div class="flex gap-2">
+      <Button
+        href="https://github.com/arlandfran/anime-corner-rankings"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="ghost"
+        size="icon"
+      >
+        <GithubLogo />
+        <span class="sr-only">Open Github repo</span>
+      </Button>
+      <ThemeToggle />
+    </div>
   </div>
 </header>
