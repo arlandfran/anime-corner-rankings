@@ -3,11 +3,11 @@ import { tv, type VariantProps } from "tailwind-variants";
 import Root from "./button.svelte";
 
 const buttonVariants = tv({
-  base: "inline-flex items-center justify-center rounded-md text-sm font-medium whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:bg-accent focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  base: "inline-flex items-center justify-center rounded-md text-sm font-medium whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:bg-accent disabled:pointer-events-none disabled:opacity-50",
   variants: {
     variant: {
       default:
-        "bg-primary text-primary-foreground shadow hover:bg-primary/90 focus-visible:bg-background focus-visible:text-foreground",
+        "bg-primary text-primary-foreground shadow hover:bg-primary/90 focus-visible:bg-background focus-visible:text-foreground focus-visible:ring-ring focus-visible:ring-1",
       destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
       outline:
         "border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground",

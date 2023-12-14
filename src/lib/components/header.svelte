@@ -12,7 +12,7 @@
     <MobileNav />
     <a
       href="/"
-      class="hidden rounded-sm bg-transparent px-3 py-1 align-middle text-sm font-semibold outline-none hover:underline focus-visible:bg-accent focus-visible:ring-1 focus-visible:ring-ring sm:block"
+      class="hidden rounded-sm bg-transparent px-3 py-1 align-middle text-sm font-semibold outline-none hover:underline focus-visible:bg-accent sm:block"
       >Anime Corner Rankings</a
     >
     <Separator orientation="vertical" class="hidden h-5 sm:block" />
