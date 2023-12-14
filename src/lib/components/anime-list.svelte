@@ -53,7 +53,7 @@
           {/if}
         </div>
         <div class="flex flex-col items-center justify-center gap-1">
-          <div class="left-2 font-semibold">{ranking.votes}%</div>
+          <div class="relative left-1 font-semibold">{ranking.votes}%</div>
           {#if ranking.votesDifference > 0}
             <div class="text-[8px] font-medium uppercase text-emerald-500">
               + {ranking.votesDifference}% gain
