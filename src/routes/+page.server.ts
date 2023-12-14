@@ -4,5 +4,5 @@ import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = () => {
   const { year, season, week } = getLatest();
-  throw redirect(307, `/${year}/${season}/${week}`);
+  throw redirect(308, `/${year}/${season}/${week}`);
 };
