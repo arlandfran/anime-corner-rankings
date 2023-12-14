@@ -6,7 +6,7 @@
   export let href: string;
   export let open: boolean;
 
-  let variant: "default" | "ghost" = $page.url.pathname === href ? "default" : "ghost";
+  let variant: "default" | "outline" = $page.url.pathname === href ? "default" : "outline";
   let className: string | undefined | null = undefined;
   export { className as class };
 </script>
