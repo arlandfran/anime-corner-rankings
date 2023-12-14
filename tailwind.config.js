@@ -1,4 +1,4 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
+import { fontFamily, screens } from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -56,6 +56,10 @@ const config = {
       },
       fontFamily: {
         sans: ["Inter Variable", ...fontFamily.sans],
+      },
+      screens: {
+        xs: "475px",
+        ...screens,
       },
     },
   },
