@@ -1,12 +1,12 @@
 <script lang="ts">
   import { buttonVariants } from "$lib/components/ui/button";
   import * as Dialog from "$lib/components/ui/dialog";
-  import { InfoCircled } from "svelte-radix";
+  import { InfoCircled } from "radix-icons-svelte";
 </script>
 
 <Dialog.Root>
   <Dialog.Trigger class={buttonVariants({ variant: "ghost", size: "icon" })}>
-    <InfoCircled size={15} tabindex={-1} />
+    <InfoCircled />
     <span class="sr-only">Open about dialog</span>
   </Dialog.Trigger>
   <Dialog.Content>

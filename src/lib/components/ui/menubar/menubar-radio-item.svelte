@@ -1,7 +1,7 @@
 <script lang="ts">
   import { cn } from "$lib/utils";
   import { Menubar as MenubarPrimitive } from "bits-ui";
-  import { DotFilled } from "svelte-radix";
+  import { DotFilled } from "radix-icons-svelte";
 
   type $$Props = MenubarPrimitive.RadioItemProps;
   let className: $$Props["class"] = undefined;
@@ -26,7 +26,7 @@
 >
   <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
     <MenubarPrimitive.RadioIndicator>
-      <DotFilled size={15} class="fill-current" />
+      <DotFilled class="h-4 w-4 fill-current" />
     </MenubarPrimitive.RadioIndicator>
   </span>
   <slot />
