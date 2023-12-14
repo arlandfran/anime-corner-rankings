@@ -17,7 +17,7 @@
         <a
           href="https://animecorner.me/"
           target="_blank"
-          class="font-medium text-white hover:underline"
+          class="font-medium text-foreground hover:underline"
         >
           Anime Corner</a
         >, an online community that provides news, highlights and articles on the anime industry.
