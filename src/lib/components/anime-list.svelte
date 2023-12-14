@@ -9,10 +9,10 @@
 <ol class="flex w-full flex-col gap-4">
   {#each rankings as ranking}
     <li
-      class="flex h-full w-full items-center justify-between rounded-lg border bg-background bg-cover p-2 text-foreground shadow-sm min-[425px]:gap-4"
+      class="flex h-full w-full items-center justify-between rounded-lg border bg-background bg-cover p-2 text-background shadow-sm dark:text-foreground min-[425px]:gap-4"
       style={ranking.bannerImage !== null
         ? `
-        background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${ranking.bannerImage})
+        background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(${ranking.bannerImage})
       `
         : undefined}
     >
@@ -32,7 +32,7 @@
         </a>
       </div>
       <div
-        class="text-outline grid h-[5.5rem] min-w-[6rem] grid-cols-1 gap-2 rounded bg-gradient-to-br from-muted/50 to-muted px-4 py-2 text-[10px] sm:h-fit sm:min-w-[12rem] sm:grid-cols-2 sm:gap-0"
+        class="dark:text-outline grid h-[5.5rem] min-w-[6rem] grid-cols-1 gap-2 rounded bg-gradient-to-br from-muted/50 to-muted px-4 py-2 text-[10px] text-foreground sm:h-fit sm:min-w-[12rem] sm:grid-cols-2 sm:gap-0"
       >
         <div class="flex flex-col items-center justify-center gap-1">
           {#if ranking.rankDifference > 0}
