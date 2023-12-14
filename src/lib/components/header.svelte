@@ -4,7 +4,7 @@
   import { Button } from "$lib/components/ui/button";
   import { MainNav, MobileNav } from "$lib/components/ui/nav";
   import { Separator } from "$lib/components/ui/separator";
-  import { GithubLogo } from "radix-icons-svelte";
+  import { GithubLogo } from "svelte-radix";
 </script>
 
 <header class="sticky top-0 z-10 w-full bg-background/80 backdrop-blur-sm">
@@ -27,7 +27,7 @@
         variant="ghost"
         size="icon"
       >
-        <GithubLogo />
+        <GithubLogo size={15} />
         <span class="sr-only">Open Github repo</span>
       </Button>
       <ThemeToggle />

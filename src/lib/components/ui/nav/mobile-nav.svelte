@@ -4,7 +4,7 @@
   import { Separator } from "$lib/components/ui/separator";
   import * as Sheet from "$lib/components/ui/sheet";
   import { links } from "$lib/config/site";
-  import { Enter } from "radix-icons-svelte";
+  import { Enter } from "svelte-radix";
   import MobileLink from "./mobile-link.svelte";
 
   $: ({ year, season, week } = $page.params);
@@ -13,7 +13,7 @@
 
 <Sheet.Root bind:open>
   <Sheet.Trigger class={buttonVariants({ variant: "ghost", size: "icon", class: "sm:hidden" })}>
-    <Enter />
+    <Enter size={15} />
     <span class="sr-only">Open side navigation</span>
   </Sheet.Trigger>
   <Sheet.Content side="left">
