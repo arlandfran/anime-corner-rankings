@@ -27,7 +27,7 @@
         variant="ghost"
         size="icon"
       >
-        <GithubLogo size={15} />
+        <GithubLogo size={15} tabindex={-1} />
         <span class="sr-only">Open Github repo</span>
       </Button>
       <ThemeToggle />

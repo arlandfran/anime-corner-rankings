@@ -6,7 +6,7 @@
 
 <Dialog.Root>
   <Dialog.Trigger class={buttonVariants({ variant: "ghost", size: "icon" })}>
-    <InfoCircled size={15} />
+    <InfoCircled size={15} tabindex={-1} />
     <span class="sr-only">Open about dialog</span>
   </Dialog.Trigger>
   <Dialog.Content>

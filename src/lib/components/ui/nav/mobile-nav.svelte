@@ -13,7 +13,7 @@
 
 <Sheet.Root bind:open>
   <Sheet.Trigger class={buttonVariants({ variant: "ghost", size: "icon", class: "sm:hidden" })}>
-    <Enter size={15} />
+    <Enter size={15} tabindex={-1} />
     <span class="sr-only">Open side navigation</span>
   </Sheet.Trigger>
   <Sheet.Content side="left">

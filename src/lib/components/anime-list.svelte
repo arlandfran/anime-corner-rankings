@@ -37,7 +37,13 @@
         <div class="flex flex-col items-center justify-center gap-1">
           {#if ranking.rankDifference > 0}
             <div class="flex items-center font-semibold">
-              <TriangleUp class="text-emerald-500" size={15} stroke="black" strokeWidth={0.5} />
+              <TriangleUp
+                class="text-emerald-500"
+                size={15}
+                stroke="black"
+                strokeWidth={0.5}
+                tabindex={-1}
+              />
               {ranking.rankDifference}
             </div>
             <div class="text-[8px] font-medium uppercase text-foreground">
@@ -45,7 +51,13 @@
             </div>
           {:else if ranking.rankDifference < 0}
             <div class="flex items-center font-semibold">
-              <TriangleDown class="text-red-500" size={15} stroke="black" strokeWidth={0.5} />
+              <TriangleDown
+                class="text-red-500"
+                size={15}
+                stroke="black"
+                strokeWidth={0.5}
+                tabindex={-1}
+              />
               {Math.abs(ranking.rankDifference)}
             </div>
             <div class="text-[8px] font-medium uppercase text-foreground">
@@ -53,17 +65,17 @@
             </div>
           {:else if ranking.rankDifference === 0}
             <div class="flex items-center">
-              <Minus class="text-amber-500" size={15} />
+              <Minus class="text-amber-500" size={15} tabindex={-1} />
             </div>
             <div class="text-[8px] font-medium uppercase text-foreground">Same rank</div>
           {:else if (ranking.previousRank === null && week === 1) || (ranking.previousRank === null && week == 2)}
             <div class="flex items-center">
-              <Minus class="text-amber-500" size={15} />
+              <Minus class="text-amber-500" size={15} tabindex={-1} />
             </div>
             <div class="text-[8px] font-medium uppercase text-foreground">New entry</div>
           {:else if ranking.previousRank === null && week > 2}
             <div class="flex items-center">
-              <Minus class="text-amber-500" size={15} />
+              <Minus class="text-amber-500" size={15} tabindex={-1} />
             </div>
             <div class="text-[8px] font-medium uppercase text-foreground">Re-entry</div>
           {/if}
