@@ -38,12 +38,11 @@
         {year} - week {week}
       </span>
     </div>
-    <div class="my-4 h-[calc(100vh-12rem)] space-y-3 overflow-auto pb-10">
+    <div class="my-4 h-[calc(100vh-12rem)] space-y-4 overflow-auto pb-10">
       {#each Object.keys(links).reverse() as year}
-        <h3 class="font-semibold">{year}</h3>
-        <Separator />
         {#each Object.keys(links[year]).reverse() as season}
-          <h4 class="font-medium capitalize">{season}</h4>
+          <h3 class="font-semibold capitalize">{season} '{year.slice(2)}</h3>
+          <Separator />
           <div class="flex flex-wrap gap-4 pl-1">
             <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
             {#each Array.from({ length: links[year][season] }) as _, i}
