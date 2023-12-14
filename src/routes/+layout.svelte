@@ -6,6 +6,8 @@
 
 <ModeWatcher />
 <Header />
-<main class="container flex min-w-[14rem] max-w-xl flex-col items-center justify-center gap-4 py-6">
+<main
+  class="flex min-w-[14rem] max-w-xl flex-col items-center justify-center gap-4 py-6 xs:container"
+>
   <slot />
 </main>

@@ -51,6 +51,64 @@ export async function getRankings(seasonId: number) {
     .limit(10)
     .prepare();
 
-  return await prepared.all();
+  const rankings = await prepared.all();
+  const media = await getMedia(rankings.map((item) => item.anilistId));
+  // return merged array of rankings from database
+  // and the corresonding media from api
+  return rankings.map((item) => ({
+    ...item,
+    ...media[`media${item.anilistId}`],
+  }));
 }
 export type Ranking = UnwrapArray<Awaited<ReturnType<typeof getRankings>>>;
+
+interface Media {
+  title: {
+    english: string;
+    romaji: string;
+  };
+  bannerImage: string;
+}
+
+async function getMedia(ids: number[]): Promise<{ [key: string]: Media }> {
+  // construct api query
+  let query = "";
+
+  for (const i in ids) {
+    query += `
+			media${ids[i]}: Media(id: ${ids[i]}, type: ANIME) {
+				title {
+					english
+					romaji
+				}
+        bannerImage
+			}`;
+  }
+
+  const response = await fetch("https://graphql.anilist.co", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      query: "{" + query + "}",
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
+
+  const result: {
+    data: {
+      [key: string]: Media;
+    };
+    errors?: { message: string }[];
+  } = await response.json();
+
+  if (result.errors) {
+    throw new Error(result.errors.map((error) => error.message).join("\n"));
+  }
+
+  return result.data;
+}
