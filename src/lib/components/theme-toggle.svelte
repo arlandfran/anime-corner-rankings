@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button";
-  import { Sun, Moon } from "radix-icons-svelte";
   import { toggleMode } from "mode-watcher";
+  import { Moon, Sun } from "radix-icons-svelte";
 </script>
 
 <Button on:click={toggleMode} variant="ghost" size="icon">

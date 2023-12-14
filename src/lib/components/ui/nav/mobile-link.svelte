@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { buttonVariants } from "$lib/components/ui/button";
   import { cn } from "$lib/utils";
-  import { buttonVariants } from "../button";
 
   export let href: string;
   export let open: boolean;

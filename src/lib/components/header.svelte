@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Button from "./button/button.svelte";
+  import AboutDialog from "$lib/components/about-dialog.svelte";
+  import ThemeToggle from "$lib/components/theme-toggle.svelte";
+  import { Button } from "$lib/components/ui/button";
+  import { MobileNav } from "$lib/components/ui/nav";
   import { GithubLogo } from "radix-icons-svelte";
-  import ThemeToggle from "./theme-toggle.svelte";
-  import AboutDialog from "./about-dialog.svelte";
-  import MobileNav from "./nav/mobile-nav.svelte";
 </script>
 
 <header class="sticky top-0 z-10 w-full bg-background/80 py-4 backdrop-blur-sm">

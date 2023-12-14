@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { InfoCircled } from "radix-icons-svelte";
-  import * as Dialog from "$lib/components/ui/dialog";
   import { buttonVariants } from "$lib/components/ui/button";
+  import * as Dialog from "$lib/components/ui/dialog";
+  import { InfoCircled } from "radix-icons-svelte";
 </script>
 
 <Dialog.Root>

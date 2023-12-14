@@ -1,11 +1,11 @@
 <script lang="ts">
+  import { page } from "$app/stores";
+  import { buttonVariants } from "$lib/components/ui/button";
+  import { Separator } from "$lib/components/ui/separator";
   import * as Sheet from "$lib/components/ui/sheet";
   import { links } from "$lib/config/site";
   import { Enter } from "radix-icons-svelte";
-  import { buttonVariants } from "../button";
-  import { page } from "$app/stores";
   import MobileLink from "./mobile-link.svelte";
-  import { Separator } from "../separator";
 
   $: ({ year, season, week } = $page.params);
   let open = false;

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Dialog as DialogPrimitive } from "bits-ui";
-  import * as Dialog from ".";
   import { cn, flyAndScale } from "$lib/utils";
+  import { Dialog as DialogPrimitive } from "bits-ui";
   import { Cross2 } from "radix-icons-svelte";
+  import * as Dialog from ".";
 
   type $$Props = DialogPrimitive.ContentProps;
 
