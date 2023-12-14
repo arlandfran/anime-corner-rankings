@@ -2,9 +2,17 @@ import { clsx, type ClassValue } from "clsx";
 import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
+import { links } from "./config/site";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export function getLatest() {
+  const year = Object.keys(links).slice(-1)[0];
+  const season = Object.keys(links[year]).slice(-1)[0];
+  const week = links[year][season];
+  return { year: year, season: season, week: week };
 }
 
 type FlyAndScaleParams = {
