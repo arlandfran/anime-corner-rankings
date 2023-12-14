@@ -3,11 +3,11 @@
   import ThemeToggle from "$lib/components/theme-toggle.svelte";
   import { Button } from "$lib/components/ui/button";
   import { MainNav, MobileNav } from "$lib/components/ui/nav";
+  import { Separator } from "$lib/components/ui/separator";
   import { GithubLogo } from "radix-icons-svelte";
-  import Separator from "./ui/separator/separator.svelte";
 </script>
 
-<header class="sticky top-0 z-10 w-full bg-background/80 py-4 backdrop-blur-sm">
+<header class="sticky top-0 z-10 w-full bg-background/80 backdrop-blur-sm">
   <div class="container flex h-16 items-center justify-between gap-3 shadow-md sm:justify-center">
     <MobileNav />
     <a
