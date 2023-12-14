@@ -5,7 +5,7 @@
 
 <header class="sticky top-0 z-10 w-full bg-background/80 py-4 backdrop-blur-sm">
   <div class="xs:container flex h-16 items-center px-4">
-    // placeholder mobile nav menu
+    <!-- placeholder mobile nav menu -->
     <Button variant="ghost" size="icon" class="sm:hidden">
       <Enter />
     </Button>
