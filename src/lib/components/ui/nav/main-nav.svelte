@@ -2,6 +2,7 @@
   import { links } from "$lib/config/site";
   import * as Menubar from "$lib/components/ui/menubar";
   import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
 </script>
 
 <Menubar.Root class="hidden sm:flex">
@@ -17,16 +18,19 @@
               {season}
             </Menubar.SubTrigger>
             <Menubar.SubContent>
-              <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-              {#each Array.from({ length: links[year][season] }) as _, i}
-                <Menubar.Item
-                  on:click={async () => {
-                    await goto(`/${year}/${season}/${i + 1}`);
-                  }}
-                >
-                  Week {i + 1}
-                </Menubar.Item>
-              {/each}
+              <Menubar.RadioGroup value={$page.url.pathname}>
+                <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+                {#each Array.from({ length: links[year][season] }) as _, i}
+                  <Menubar.RadioItem
+                    value={`/${year}/${season}/${i + 1}`}
+                    on:click={async () => {
+                      await goto(`/${year}/${season}/${i + 1}`);
+                    }}
+                  >
+                    Week {i + 1}
+                  </Menubar.RadioItem>
+                {/each}
+              </Menubar.RadioGroup>
             </Menubar.SubContent>
           </Menubar.Sub>
         {/each}
