@@ -1,13 +1,15 @@
 <script lang="ts">
   import type { Ranking } from "$lib/server/database";
   import { Minus, TriangleDown, TriangleUp } from "radix-icons-svelte";
+  import { flip } from "svelte/animate";
+  import { fade } from "svelte/transition";
 
   export let rankings: Ranking[];
   export let week: number;
 </script>
 
 <ol class="flex w-full flex-col gap-4">
-  {#each rankings as ranking}
+  {#each rankings as ranking (ranking.anilistId)}
     <li
       class="flex h-full w-full items-center justify-between rounded-lg border bg-background bg-cover p-2 text-background shadow-sm dark:text-foreground min-[425px]:gap-4"
       style={ranking.bannerImage !== null
@@ -15,6 +17,9 @@
         background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)), url(${ranking.bannerImage})
       `
         : undefined}
+      animate:flip={{ duration: 700 }}
+      in:fade={{ duration: 250 }}
+      out:fade={{ duration: 250 }}
     >
       <div class="text-outline px-4 text-sm font-bold">{ranking.rank}</div>
       <div class="text-outline grow px-2 text-left text-sm font-medium [text-wrap:balance]">
