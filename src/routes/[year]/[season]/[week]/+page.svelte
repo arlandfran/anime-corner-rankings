@@ -20,11 +20,10 @@
     {year}
     {capitalize(season)} Week {week} - Anime Corner Rankings
   </title>
-  <description>
-    The results of Week {week}
-    {capitalize(season)}
-    {year} from Anime Corner.
-  </description>
+  <meta
+    name="description"
+    content={`The results of Week ${week} ${capitalize(season)} ${year} from Anime Corner`}
+  />
 </svelte:head>
 
 <div class="flex items-center justify-center gap-2">
