@@ -2,6 +2,7 @@
   import { page } from "$app/stores";
   import AnimeList from "$lib/components/anime-list.svelte";
   import { buttonVariants } from "$lib/components/ui/button";
+  import { links } from "$lib/config/site";
   import type { PageData } from "./$types";
   import { ChevronLeft, ChevronRight, DoubleArrowLeft, DoubleArrowRight } from "radix-icons-svelte";
 
@@ -10,12 +11,33 @@
   $: ({ year, season, week } = $page.params);
   $: ({ rankings, totalPages } = data);
   $: currentPage = parseInt(($page.url.searchParams.get("page") as string) ?? 1);
+  $: maxWeek = links[year][season];
 </script>
 
-<h1 class="text-center text-lg font-semibold capitalize tracking-tight [text-wrap:balance]">
-  {season}
-  {year} anime rankings - week {week}
-</h1>
+<div class="flex items-center justify-center gap-2">
+  <a
+    href={`/${year}/${season}/${parseInt(week) - 1}`}
+    class={buttonVariants({ variant: "ghost", size: "icon" })}
+    aria-disabled={parseInt(week) === 1 ? true : false}
+    tabIndex={parseInt(week) === 1 ? -1 : undefined}
+  >
+    <ChevronLeft />
+    <span class="sr-only">Go to previous week</span>
+  </a>
+  <h1 class="text-center font-semibold capitalize tracking-tight [text-wrap:balance]">
+    {season}
+    {year} anime rankings - week {week}
+  </h1>
+  <a
+    href={`/${year}/${season}/${parseInt(week) + 1}`}
+    class={buttonVariants({ variant: "ghost", size: "icon" })}
+    aria-disabled={parseInt(week) === maxWeek ? true : false}
+    tabIndex={parseInt(week) === maxWeek ? -1 : undefined}
+  >
+    <ChevronRight />
+    <span class="sr-only">Go to next week</span>
+  </a>
+</div>
 
 <div class="flex items-center justify-center gap-2">
   <a
