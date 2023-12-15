@@ -1,4 +1,5 @@
-import { getRankings } from "$lib/server/database";
+import { getRankings, getTotalPages } from "$lib/server/database";
+import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
 interface PageParams {
@@ -25,9 +26,18 @@ function parseParams(params: PageParams) {
   }
 }
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ url, params }) => {
+  const { year, season, week } = params;
   const seasonId = parseParams(params);
-  const rankings = await getRankings(seasonId);
+  const page = parseInt(url.searchParams.get("page") as string);
+  const totalPages = await getTotalPages(seasonId);
+  if (page < 1) {
+    redirect(307, `/${year}/${season}/${week}`);
+  } else if (page > totalPages) {
+    redirect(307, `/${year}/${season}/${week}`);
+  }
+  const offset = (page - 1) * 10;
+  const rankings = await getRankings(seasonId, offset);
 
-  return { rankings: rankings };
+  return { rankings: rankings, totalPages: totalPages };
 };

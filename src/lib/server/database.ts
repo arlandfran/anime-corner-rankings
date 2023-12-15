@@ -1,7 +1,7 @@
 import { DATABASE_AUTH_TOKEN, DATABASE_URL } from "$env/static/private";
 import type { UnwrapArray } from "$lib/utils";
 import { createClient } from "@libsql/client";
-import { asc, eq, sql } from "drizzle-orm";
+import { asc, count, eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/libsql";
 import { ranking } from "./schema";
 
@@ -9,7 +9,15 @@ const client = createClient({ url: DATABASE_URL, authToken: DATABASE_AUTH_TOKEN 
 
 export const db = drizzle(client);
 
-export async function getRankings(seasonId: number) {
+export async function getTotalPages(seasonId: number) {
+  const [{ value }] = await db
+    .select({ value: count() })
+    .from(ranking)
+    .where(eq(ranking.seasonId, seasonId));
+  return Math.ceil(value / 10);
+}
+
+export async function getRankings(seasonId: number, offset: number) {
   const query = db
     .select({
       rank: ranking.rank,
@@ -49,6 +57,7 @@ export async function getRankings(seasonId: number) {
     .leftJoin(previous, eq(query.anilistId, previous.anilistId))
     .orderBy(asc(query.rank))
     .limit(10)
+    .offset(offset)
     .prepare();
 
   const rankings = await prepared.all();
