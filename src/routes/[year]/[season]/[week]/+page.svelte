@@ -3,8 +3,9 @@
   import AnimeList from "$lib/components/anime-list.svelte";
   import { buttonVariants } from "$lib/components/ui/button";
   import { links } from "$lib/config/site";
-  import type { PageData } from "./$types";
+  import { capitalize } from "$lib/utils";
   import { ChevronLeft, ChevronRight, DoubleArrowLeft, DoubleArrowRight } from "radix-icons-svelte";
+  import type { PageData } from "./$types";
 
   export let data: PageData;
 
@@ -13,6 +14,18 @@
   $: currentPage = parseInt(($page.url.searchParams.get("page") as string) ?? 1);
   $: maxWeek = links[year][season];
 </script>
+
+<svelte:head>
+  <title>
+    {year}
+    {capitalize(season)} Week {week} - Anime Corner Rankings
+  </title>
+  <description>
+    The results of Week {week}
+    {capitalize(season)}
+    {year} from Anime Corner.
+  </description>
+</svelte:head>
 
 <div class="flex items-center justify-center gap-2">
   <a

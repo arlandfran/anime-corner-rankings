@@ -8,6 +8,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function capitalize(input: string) {
+  return input.charAt(0).toUpperCase() + input.slice(1);
+}
+
 export function getLatest() {
   const year = Object.keys(links).slice(-1)[0];
   const season = Object.keys(links[year]).slice(-1)[0];
