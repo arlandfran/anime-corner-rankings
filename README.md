@@ -1,6 +1,8 @@
 # Anime Corner Rankings
 
-A fluid web representation of [ Anime Corner's - Anime of the Week ](https://animecorner.me/category/anime-corner/rankings/anime-of-the-week/) graphics.
+[View site here](https://anime-corner-rankings.vercel.app/)
+
+A fluid web representation of Anime Corner's - [Anime of the Week](https://animecorner.me/category/anime-corner/rankings/anime-of-the-week/) graphics.
 
 Built with:
 
