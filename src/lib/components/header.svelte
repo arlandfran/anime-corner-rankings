@@ -8,7 +8,7 @@
 </script>
 
 <header class="sticky top-0 z-10 w-full bg-background/80 backdrop-blur-sm">
-  <div class="container flex h-16 items-center justify-between gap-3 shadow-md sm:justify-center">
+  <div class="container flex h-16 items-center justify-between gap-3 sm:justify-center">
     <MobileNav />
     <a
       href="/"
