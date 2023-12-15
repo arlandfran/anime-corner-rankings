@@ -26,7 +26,7 @@
   </a>
   <h1 class="text-center font-semibold capitalize tracking-tight [text-wrap:balance]">
     {season}
-    {year} anime rankings - week {week}
+    {year} <span class="hidden xs:inline-block">anime rankings</span> - week {week}
   </h1>
   <a
     href={`/${year}/${season}/${parseInt(week) + 1}`}
