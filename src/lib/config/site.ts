@@ -1,5 +1,6 @@
 export const links: { [key: string]: { [key: string]: number } } = {
   2021: {
+    winter: 12,
     spring: 12,
     summer: 12,
     fall: 11,
