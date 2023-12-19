@@ -1,9 +1,10 @@
 import { DATABASE_AUTH_TOKEN, DATABASE_URL } from "$env/static/private";
-import type { UnwrapArray } from "$lib/utils";
 import { createClient } from "@libsql/client";
 import { asc, count, eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/libsql";
 import { rankings } from "./schema";
+
+export type Ranking = Awaited<ReturnType<typeof getRankings>>[0];
 
 const client = createClient({ url: DATABASE_URL, authToken: DATABASE_AUTH_TOKEN });
 
@@ -69,7 +70,6 @@ export async function getRankings(seasonId: number, offset: number) {
     ...media[`media${item.anilistId}`],
   }));
 }
-export type Ranking = UnwrapArray<Awaited<ReturnType<typeof getRankings>>>;
 
 interface Media {
   title: {
