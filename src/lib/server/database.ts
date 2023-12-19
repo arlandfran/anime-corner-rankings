@@ -3,7 +3,7 @@ import type { UnwrapArray } from "$lib/utils";
 import { createClient } from "@libsql/client";
 import { asc, count, eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/libsql";
-import { ranking } from "./schema";
+import { rankings } from "./schema";
 
 const client = createClient({ url: DATABASE_URL, authToken: DATABASE_AUTH_TOKEN });
 
@@ -12,32 +12,32 @@ export const db = drizzle(client);
 export async function getTotalPages(seasonId: number) {
   const [{ value }] = await db
     .select({ value: count() })
-    .from(ranking)
-    .where(eq(ranking.seasonId, seasonId));
+    .from(rankings)
+    .where(eq(rankings.seasonId, seasonId));
   return Math.ceil(value / 10);
 }
 
 export async function getRankings(seasonId: number, offset: number) {
   const query = db
     .select({
-      rank: ranking.rank,
-      anilistId: ranking.anilistId,
-      votes: ranking.votes,
+      rank: rankings.rank,
+      anilistId: rankings.anilistId,
+      votes: rankings.votes,
     })
-    .from(ranking)
-    .where(eq(ranking.seasonId, seasonId))
+    .from(rankings)
+    .where(eq(rankings.seasonId, seasonId))
     .as("query");
 
   const previous = db
     .select({
-      rank: ranking.rank,
-      anilistId: ranking.anilistId,
-      votes: ranking.votes,
+      rank: rankings.rank,
+      anilistId: rankings.anilistId,
+      votes: rankings.votes,
     })
-    .from(ranking)
+    .from(rankings)
     .where(
       eq(
-        ranking.seasonId,
+        rankings.seasonId,
         // this one liner converts 231209 to 23129 when decrementing seasonId
         seasonId % 10 === 0 ? parseInt(seasonId.toString().slice(0, -2) + "9") : seasonId - 1,
       ),
@@ -60,11 +60,11 @@ export async function getRankings(seasonId: number, offset: number) {
     .offset(offset)
     .prepare();
 
-  const rankings = await prepared.all();
-  const media = await getMedia(rankings.map((item) => item.anilistId));
+  const data = await prepared.all();
+  const media = await getMedia(data.map((item) => item.anilistId));
   // return merged array of rankings from database
   // and the corresonding media from api
-  return rankings.map((item) => ({
+  return data.map((item) => ({
     ...item,
     ...media[`media${item.anilistId}`],
   }));
