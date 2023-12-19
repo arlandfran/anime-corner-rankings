@@ -4,8 +4,6 @@ import { asc, count, eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/libsql";
 import { rankings } from "./schema";
 
-export type Ranking = Awaited<ReturnType<typeof getRankings>>[0];
-
 const client = createClient({ url: DATABASE_URL, authToken: DATABASE_AUTH_TOKEN });
 
 export const db = drizzle(client);
@@ -17,6 +15,8 @@ export async function getTotalPages(seasonId: number) {
     .where(eq(rankings.seasonId, seasonId));
   return Math.ceil(value / 10);
 }
+
+export type Ranking = Awaited<ReturnType<typeof getRankings>>[0];
 
 export async function getRankings(seasonId: number, offset: number) {
   const query = db
