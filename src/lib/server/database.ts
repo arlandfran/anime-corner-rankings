@@ -8,12 +8,12 @@ const client = createClient({ url: DATABASE_URL, authToken: DATABASE_AUTH_TOKEN 
 
 export const db = drizzle(client);
 
-export async function getTotalPages(seasonId: number) {
+export async function getSeasonCount(seasonId: number) {
   const [{ value }] = await db
     .select({ value: count() })
     .from(rankings)
     .where(eq(rankings.seasonId, seasonId));
-  return Math.ceil(value / 10);
+  return { totalPages: Math.ceil(value / 10), count: value };
 }
 
 export type Ranking = Awaited<ReturnType<typeof getRankings>>[0];
