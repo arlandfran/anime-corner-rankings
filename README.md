@@ -7,6 +7,7 @@ A fluid web representation of Anime Corner's - [Anime of the Week](https://anime
 Built with:
 
 - [SvelteKit](https://kit.svelte.dev/)
+- [Shadcn-svelte](https://www.shadcn-svelte.com/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Drizzle ORM](https://orm.drizzle.team/)
 - [Turso](https://turso.tech/)
