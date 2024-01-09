@@ -4,15 +4,19 @@
   import { buttonVariants } from "$lib/components/ui/button";
   import { links } from "$lib/config/site";
   import { capitalize } from "$lib/utils";
-  import { ChevronLeft, ChevronRight, DoubleArrowLeft, DoubleArrowRight } from "radix-icons-svelte";
+  import { ChevronLeft, ChevronRight } from "radix-icons-svelte";
   import type { PageData } from "./$types";
+  import * as Pagination from "$lib/components/ui/pagination";
+  import { isDesktop } from "$lib/stores";
+  import { goto } from "$app/navigation";
 
   export let data: PageData;
 
   $: ({ year, season, week } = $page.params);
-  $: ({ rankings, totalPages } = data);
+  $: ({ rankings, count } = data);
   $: currentPage = parseInt(($page.url.searchParams.get("page") as string) ?? 1);
   $: maxWeek = links[year][season];
+  $: siblingCount = $isDesktop ? 1 : 0;
 </script>
 
 <svelte:head>
@@ -52,45 +56,43 @@
 </div>
 
 <div class="flex items-center justify-center gap-2">
-  <a
-    href={`/${year}/${season}/${week}?page=1`}
-    class={buttonVariants({ variant: "outline", size: "icon" })}
-    aria-disabled={currentPage === 1 ? true : false}
-    tabIndex={currentPage === 1 ? -1 : undefined}
-  >
-    <DoubleArrowLeft />
-    <span class="sr-only">Go to first page</span>
-  </a>
-  <a
-    href={`/${year}/${season}/${week}?page=${currentPage - 1}`}
-    class={buttonVariants({ variant: "outline", size: "icon" })}
-    aria-disabled={currentPage === 1 ? true : false}
-    tabIndex={currentPage === 1 ? -1 : undefined}
-  >
-    <ChevronLeft />
-    <span class="sr-only">Go to previous page</span>
-  </a>
-  <span class="text-sm font-semibold [text-wrap:balance] xs:px-4">
-    Page {currentPage} of {totalPages}
-  </span>
-  <a
-    href={`/${year}/${season}/${week}?page=${currentPage + 1}`}
-    class={buttonVariants({ variant: "outline", size: "icon" })}
-    aria-disabled={currentPage === totalPages ? true : false}
-    tabIndex={currentPage === totalPages ? -1 : undefined}
-  >
-    <ChevronRight />
-    <span class="sr-only">Go to next page</span>
-  </a>
-  <a
-    href={`/${year}/${season}/${week}?page=${totalPages}`}
-    class={buttonVariants({ variant: "outline", size: "icon" })}
-    aria-disabled={currentPage === totalPages ? true : false}
-    tabIndex={currentPage === totalPages ? -1 : undefined}
-  >
-    <DoubleArrowRight />
-    <span class="sr-only">Go to last page</span>
-  </a>
+  <Pagination.Root {count} {siblingCount} perPage={10} let:pages>
+    <Pagination.Content>
+      <Pagination.Item>
+        <Pagination.PrevButton
+          on:click={() => {
+            goto(`/${year}/${season}/${week}/?page=${currentPage - 1}`);
+          }}
+        />
+      </Pagination.Item>
+      {#each pages as page (page.key)}
+        {#if page.type === "ellipsis"}
+          <Pagination.Item>
+            <Pagination.Ellipsis />
+          </Pagination.Item>
+        {:else}
+          <Pagination.Item>
+            <Pagination.Link
+              {page}
+              isActive={currentPage == page.value}
+              on:click={() => {
+                goto(`/${year}/${season}/${week}/?page=${page.value}`);
+              }}
+            >
+              {page.value}
+            </Pagination.Link>
+          </Pagination.Item>
+        {/if}
+      {/each}
+      <Pagination.Item>
+        <Pagination.NextButton
+          on:click={() => {
+            goto(`/${year}/${season}/${week}/?page=${currentPage + 1}`);
+          }}
+        />
+      </Pagination.Item>
+    </Pagination.Content>
+  </Pagination.Root>
 </div>
 
 <AnimeList {rankings} week={parseInt(week)} />
