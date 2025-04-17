@@ -1,0 +1,146 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "e6a2e5a1-53fa-4224-b05c-bc55a901009e",
+  "prevId": "ddbb00d4-5e09-4a43-9fb8-02fc6d165894",
+  "tables": {
+    "anime": {
+      "name": "anime",
+      "columns": {
+        "anime_id": {
+          "name": "anime_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "weekly_ranking": {
+      "name": "weekly_ranking",
+      "columns": {
+        "anime_id": {
+          "name": "anime_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "year": {
+          "name": "year",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "season": {
+          "name": "season",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "week": {
+          "name": "week",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rank": {
+          "name": "rank",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rank_delta": {
+          "name": "rank_delta",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "votes": {
+          "name": "votes",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "votes_delta": {
+          "name": "votes_delta",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "idx_year_season_week": {
+          "name": "idx_year_season_week",
+          "columns": [
+            "year",
+            "season",
+            "week"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "weekly_ranking_anime_id_anime_anime_id_fk": {
+          "name": "weekly_ranking_anime_id_anime_anime_id_fk",
+          "tableFrom": "weekly_ranking",
+          "tableTo": "anime",
+          "columnsFrom": [
+            "anime_id"
+          ],
+          "columnsTo": [
+            "anime_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "weekly_ranking_anime_id_year_season_week_pk": {
+          "columns": [
+            "anime_id",
+            "year",
+            "season",
+            "week"
+          ],
+          "name": "weekly_ranking_anime_id_year_season_week_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {
+      "\"weekly_ranking\".\"ranking_delta\"": "\"weekly_ranking\".\"rank_delta\""
+    }
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

@@ -1,0 +1,1 @@
+ALTER TABLE `weekly_ranking` RENAME COLUMN "ranking_delta" TO "rank_delta";

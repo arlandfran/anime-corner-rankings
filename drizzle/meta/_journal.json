@@ -8,6 +8,13 @@
       "when": 1744927066284,
       "tag": "0000_soft_luke_cage",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1744932724002,
+      "tag": "0001_small_fenris",
+      "breakpoints": true
     }
   ]
 }
