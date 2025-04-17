@@ -22,7 +22,7 @@ export const weeklyRanking = sqliteTable(
     season: text("season").notNull(),
     week: integer("week").notNull(),
     rank: integer("rank").notNull(),
-    rankDelta: integer("ranking_delta").notNull().default(0),
+    rankDelta: integer("rank_delta").notNull().default(0),
     votes: real("votes").notNull(),
     votesDelta: real("votes_delta").notNull().default(0.0),
   },
