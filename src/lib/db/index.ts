@@ -63,3 +63,5 @@ export const getWeeklyRankings = async (
 
   return result;
 };
+
+export type Ranking = Awaited<ReturnType<typeof getWeeklyRankings>>[0];
