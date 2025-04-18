@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
 import { anime, weeklyRanking } from "./schema";
-import { eq, and, asc } from "drizzle-orm";
+import { eq, and, asc, desc, sql } from "drizzle-orm";
 
 const client = createClient({
   url: process.env.TURSO_DATABASE_URL!,
@@ -9,6 +9,28 @@ const client = createClient({
 });
 
 export const db = drizzle(client);
+
+export const getLatestWeek = async () => {
+  const result = await db
+    .select({
+      year: weeklyRanking.year,
+      season: weeklyRanking.season,
+      week: weeklyRanking.week,
+    })
+    .from(weeklyRanking)
+    .orderBy(
+      desc(weeklyRanking.year),
+      desc(
+        sql.raw(
+          "CASE season WHEN 'winter' THEN 1 WHEN 'spring' THEN 2 WHEN 'summer' THEN 3 WHEN 'fall' THEN 4 END"
+        )
+      ),
+      desc(weeklyRanking.week)
+    )
+    .limit(1);
+
+  return result[0];
+};
 
 export const getWeeklyRankings = async (
   year: number,
